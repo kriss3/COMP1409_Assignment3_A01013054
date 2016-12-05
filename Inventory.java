@@ -60,7 +60,7 @@ public class Inventory
         
         for(Vehicle v : vehicles)
         {
-            if(v.getModel() == model)
+            if(v.getModel().equals(model))
             {
                 results.add(v);
             }
@@ -115,12 +115,17 @@ public class Inventory
      */
     public void displaySearchResults(ArrayList<Vehicle> results)
     {
-        if(results != null)
+        if(results != null && results.size() > 0)
         {
-            for(Vehicle v : vehicles)
+            for(Vehicle v : results)
             {
+                System.out.println("####---------------------------####");
                 v.printDetails();
             }
+        }
+        else
+        {
+            System.out.println("No Search results found !!!");
         }
     }
     
@@ -174,6 +179,7 @@ public class Inventory
     {
         for(Vehicle v : vehicles)
         {
+            System.out.println("####---------------------------####");
             v.printDetails();
         }
     }
