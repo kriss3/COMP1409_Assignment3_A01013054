@@ -1,224 +1,256 @@
+
 /**
- * @author Bullwinkle Moose
- * @version 1.0
+ * Vehicle class for "Jalopies Are Us" company;
+ * Assignment 1 from Gary Tong;
+ * @author Krzysztof Szczurowski - A01013054 
+ * @version 1.1
+ * @date 11/05/2016
+ * @since 11/05/2016
+ * @see https://learn.bcit.ca/d2l/le/content/331960/viewContent/2110064/View
  */
-
-import java.text.DecimalFormat;
-
 public class Vehicle
 {
-    private String stockCode;
-    private String make;
-    private String model;
-    private int year;
-    private double dealerCost;
-    private double sellingPrice;
-    private double profitMargin;
-
-    private static final int CURRENT_YEAR = 2016;
-    private static final int OLDEST_YEAR = 1970;
-
+    /** Min value of a year set to 1970 */
+    public static final int MIN_CAR_YEAR = 1970;
+    /** Max value of a year set to 2016 */
+    public static final int MAX_CAR_YEAR = 2016;
+    
+    private String _stockCode;
+    private String _make;
+    private String _model;
+    private int _year;
+    private double _dealerCost;
+    private double _sellingPrice;
+    private double _profitMargin;
+    
     /**
-     * Default Constructor for Objects of class Vehicle.
+     * Parameterless/default constructor for Vehicle class <br>
+     * Setting default valus for all instance variables. <br>
+     * Year variable is calculated based on Selling Prince and Dealer Cost s
      */
     public Vehicle()
     {
-
+        _stockCode = "Fiat_10000";
+        _make = "Fiat";
+        _model = "126p";
+        _year = 1976;
+        _dealerCost = 200;
+        _sellingPrice = 1000;
+        _profitMargin = (_sellingPrice - _dealerCost) / _sellingPrice;
     }
-
+    
     /**
-     * Constructor for Objects of class Vehicle.
-     *
-     * @param _stockCode to initialize stockCode field
-     * @param _make to initialize make field
-     * @param _model to initialize model field
-     * @param _year to initialize year field
+     * Custom constructor which take Stock Code, Make Model and Year; <br>
+     * For Stock Code, Make and Model, it calls respected mutator method <br>
+     * Year is checked agains MIN and MAX value; <br> 
+     * If Year passed, falls outside of perimeter the default value is set to 1978
+     * 
+     * @param stockCode as String;
+     * @param make as String;
+     * @param model as String;
+     * @param year as Integer;
      */
-    public Vehicle(String _stockCode, String _make, String _model, int _year)
+    public Vehicle(String stockCode, String make, String model, int year)
     {
-        stockCode = _stockCode;
-        make = _make;
-        model = _model;
-
-        if(_year >= OLDEST_YEAR && _year <= CURRENT_YEAR)
-        {
-            year = _year;
-        }
+       setStockCode(stockCode);
+       setMake(make);
+       setModel(model);
+       this._year = (year <= MIN_CAR_YEAR || year >= MAX_CAR_YEAR) ? 1978 : year;
     }
-
+    
     /**
-     * @return the vehicle stockCode as String
+     * Public getter method to fetch the value of StockCode; <br>
+     * It does not take any parameters;
+     * @return gets back StockCode as String;
      */
     public String getStockCode()
     {
-        return stockCode;
+        return this._stockCode;
     }
-
+    
     /**
-     * @return the make as String
+     * Public setter to set the value of Stock Code; <br>
+     * It does not return any value; <br>
+     * @param value of the StockCode as String;
+     */
+    public void setStockCode(String value)
+    {
+        this._stockCode = value;
+    }
+    
+    /**
+     * Public get method to fetch the value of Car's Make; <br>
+     * It does not take any parameter; <br>
+     * @return returns Make as String
      */
     public String getMake()
     {
-        return make;
+        return this._make;
     }
-
+    
     /**
-     * @return the model as String
+     * Public setter/method that sets the value of car make; <br>
+     * @param takes parameter value as String;
+     */
+    public void setMake(String value)
+    {
+        this._make = value;
+    }
+    
+    /**
+     * Public getter method to return Model name;
+     * @return gets Model as String
      */
     public String getModel()
     {
-        return model;
+        return this._model;
     }
-
+    
     /**
-     * @return the year as int
+     * Public setter mettor to set the valie of Car's Model
+     * @param sets the value of a Molel as String;
+     */
+    public void setModel(String value)
+    {
+        this._model = value;
+    }
+    
+    /**
+     * Public getter method to return value of the Year set;
+     * @return returns Year as Integer
      */
     public int getYear()
     {
-        return year;
+        return this._year;
     }
-
+    
     /**
-     * @return the dealerCost as double
+     * Public setter method to set the valie of car's year; <br>
+     * It does not return any value; <br>
+     * It validate value passed in and when if falls bellow MIN and above MAX year, error message is displayed;
+     * @param value of a year passed as Integer;
      */
-    public double getdealerCost()
+    public void setYear(int value)
     {
-        return dealerCost;
+        if(value <= MIN_CAR_YEAR || value >= MAX_CAR_YEAR)
+        {
+            printYearError(value);
+        }
+        else
+        {
+            this._year = value;
+        }
     }
-
+    
     /**
-     * @return the sellingPrice as double
+     * Public getter method taht returns a value of dealer cost; <br>
+     * It does not take any parameter;
+     * @return returns Dealer Cost value as Double
+     */
+    public double getDealerCost()
+    {
+        return this._dealerCost;
+    }
+    
+    /**
+     * Public method/setter that sets the value of dealer cost; <br>
+     * It validates passed paramets and make sure it is not a negative number;
+     * @return returns value of dealer cost as Double;
+     */
+    public void setDealerCost(double value)
+    {
+        if(value >=0)
+        {
+            this._dealerCost = value;
+        }
+    }
+    
+    /**
+     * Public getter/method to return value of the Selling Price; <br>
+     * It does not take a parameter; 
+     * @return returns Selling Price as Double
      */
     public double getSellingPrice()
     {
-        return sellingPrice;
+        return this._sellingPrice;
     }
-
+    
     /**
-     * @return the profit margin on the vehicle if sold, as double
+     * Public method to check new selling price; <br>
+     * Price will be rejected if falls below 25% above dealer cost; <br>
+     * It does not return any value;
+     * @param newSellingPrice as double 
      */
-    public double getProfitMargin()
+    public void checkStandardSellingPrice(double newSellingPrice)
     {
-        return profitMargin;
-    }
-
-    /**
-     * @param _stockCode sets the value for the stockCode field.
-     */
-    public void setStockCode(String _stockCode)
-    {
-        stockCode = _stockCode;
-    }
-
-    /**
-     * @param _make sets the value for the make field.
-     */
-    public void setMake(String _make)
-    {
-        make = _make;
-    }
-
-    /**
-     * @param _model sets the value for the model field.
-     */
-    public void setModel(String _model)
-    {
-        model = _model;
-    }
-
-    /**
-     * @param _year sets the value for the year field
-     */
-    public void setYear(int _year)
-    {
-        if(_year >= OLDEST_YEAR && _year <= CURRENT_YEAR)
+        double minPrice = _dealerCost + ((_dealerCost * 25) /100);
+        if(newSellingPrice <= minPrice)
         {
-            year = _year;
+            displaySellingPriceError(_dealerCost, _sellingPrice, newSellingPrice);
         }
         else
         {
-            System.out.println("invalid input");
+            this._sellingPrice = newSellingPrice;
         }
     }
-
+    
     /**
-     * @param _dealerCost sets the value for the dealerCost field
-     */
-    public void setDealerCost(double _dealerCost)
-    {
-        if(_dealerCost >= 0)
-        {
-            dealerCost = _dealerCost;
-
-        }
-        else
-        {
-            System.out.println("invalid input");
-        }
-    }
-
-    /**
-     * @param _sellingPrice sets the sellingPrice only if it is at least 25% than dealerCost
-     */
-    public void checkStandardSellingPrice(double _sellingPrice)
-    {
-        if(_sellingPrice >= (dealerCost * 1.25))
-        {
-            sellingPrice = _sellingPrice;
-
-        }
-        else
-        {
-            System.out.println("The dealer cost is: $" + dealerCost + ". Sale price $" + _sellingPrice + " is not high enough");
-        }
-    }
-
-    /**
-     * @param _sellingPrice sets the value for the sellingPrice field
-     */
-    public void setSellingPrice(double _sellingPrice)
-    {
-        if(_sellingPrice >= 0)
-        {
-            sellingPrice = _sellingPrice;
-
-        }
-        else
-        {
-            System.out.println("invalid input");
-        }
-    }
-
-    /**
-     * calculates the profit margin for selling a vehicle
+     * Public method that calculates and sets profitMargin based on sellingPrice and dealerCost; <br>
+     * It does not return any value and it does not take any parameter;
      */
     public void calculateProfitMargin()
     {
-        profitMargin = (sellingPrice - dealerCost) / sellingPrice;
+        this._profitMargin = (_sellingPrice - _dealerCost) / _sellingPrice;
     }
-
+    
     /**
-     * @return the profit on selling a vehicle as a dollar value.
+     * Public method that calculates Profit made in dolaras; <br>
+     * Calculation is made based on sellingPrice and dealerCost
+     * It does not take any parameter; <br>
+     * @return returns calculated value of the profit in dollar amount
      */
     public double calculateProfit()
     {
-        return sellingPrice - dealerCost;
+        return _sellingPrice - _dealerCost;
     }
-
+    
     /**
-     * formats and displays all vehicle information.
+     * Method to display summary of Vehicle details <br>
+     * It does not take any parametes <br>
+     * It does not return any value; <br>
+     * Prints details of the Vehicle class;
      */
     public void printDetails()
     {
-        DecimalFormat formatter = new DecimalFormat("$0.00");
-        DecimalFormat percentFormatter = new DecimalFormat("0%");
-
-        System.out.println("Jalopies Are Us Vehicle Summary: ");
-        System.out.println("Vehicle: " + year + " " + make + " " + model);
-        System.out.println("Stock Code:" + stockCode);
-        System.out.println("Dealer Cost: " + formatter.format(dealerCost));
-        System.out.println("Selling Price: " + formatter.format(sellingPrice));
-        System.out.println("Profit Margin: " + percentFormatter.format(profitMargin));
-        System.out.println("Dollar Profit: " + formatter.format(calculateProfit()));
+       System.out.println("Jalopies Are Us Vehicle Summary:");
+       System.out.println("Vehicle: " + _year + " " + _make + " " + _model);
+       System.out.println("Stock Code: " + _stockCode);
+       System.out.printf("Dealer Cost: $%.2f \n", _dealerCost);
+       System.out.printf("Selling Price: $%.2f \n", _sellingPrice);
+       System.out.println("Profit Margin: " + String.format("%.0f%%",_profitMargin * 100));
+       System.out.printf("Dollar Profit: $%.2f \n",calculateProfit()); 
+    }
+    
+    /*
+     * Helper method to display error message when value of car's year falls out of designated range
+     */
+    private void printYearError(int year)
+    {
+        System.out.println("ERROR !!!! \n Year Entered: " + _year + 
+        "The value for year must be between 1970 and 2016.\n" + 
+        "Please, provide correct year value !!!");
+    } 
+    
+    /*
+     * Helper method to display error message when selling price does not meet minimum,
+     * Minimum set to 25% above dealier cost
+     */
+    private void displaySellingPriceError(double _dealerCost, double _sellingPrice, double newSellingPrice)
+    {
+        System.out.println("ERROR !!!!");
+        System.out.printf("Dealer Cost: $%.2f \n", _dealerCost);
+        System.out.printf("Current Selling Price: $%.2f \n", _sellingPrice);
+        System.out.printf("Proposed Selling Price: $%.2f \n", newSellingPrice);
+        System.out.println("Proposed Selling Price needs to be at lest 25% higher than Dealer Cost !");
     }
 }
