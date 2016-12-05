@@ -1,6 +1,7 @@
 import java.util.*;
 /**
- * Inventory class to model car shop inventory.
+ * Inventory class to model car shop inventory. Objects of this class are to manage 
+ * vehicles currently in the inventory.
  * 
  * @author Krzysztof Szczurowski
  * @version 1.1
@@ -10,6 +11,11 @@ import java.util.*;
 public class Inventory
 {
     private static ArrayList<Vehicle> vehicles;
+    
+    public Inventory()
+    {
+        vehicles = new ArrayList<Vehicle>();
+    }
     
     /**
      * Public getter method to get the value of vehicles;
@@ -31,7 +37,11 @@ public class Inventory
            vehicles = value;
        }
     }
-    
+   
+    /**
+     * Public method to add vehicle to inventory;
+     * @param takes parameter vehicle as Vehicle;
+     */
     public void addVehicle(Vehicle vehicle)
     {
         if(vehicle != null)
@@ -40,6 +50,10 @@ public class Inventory
         }
     }
     
+    /**
+     * Public method to seach inventory by vehicle's model;
+     * @param takes parameter model as String;
+     */
     public void searchByModel(String model)
     {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
@@ -55,6 +69,10 @@ public class Inventory
         displaySearchResults(results);
     }
     
+    /**
+     * Public method to seach inventory by vehicle's year;
+     * @param take parameter year as Integer;
+     */
     public void searchByYear(int year)
     {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
@@ -71,6 +89,11 @@ public class Inventory
         
     }
     
+    /**
+     * Public method to search inventory by min and max Price;
+     * @param takes minPrice parameter as double;
+     * @param takes maxPrice parameter as double;
+     */
     public void searchByPrice(double minPrice, double maxPrice)
     {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();
@@ -86,6 +109,10 @@ public class Inventory
         displaySearchResults(results);
     }
     
+    /**
+     * Public method to display Inventory search results;
+     * @param takes results parameter as ArrayList of Vehicles;
+     */
     public void displaySearchResults(ArrayList<Vehicle> results)
     {
         if(results != null)
@@ -97,6 +124,10 @@ public class Inventory
         }
     }
     
+    /**
+     * Public method to remove Vehicle from Inventory identified by Vehicle's StockCode;
+     * @param takes stockCode parameter as String;
+     */
     public static void removeVehicle(String stockCode)
     {
         if(!stockCode.equals(""))
@@ -112,11 +143,19 @@ public class Inventory
         }
     }
     
+    /**
+     * Public method to count number of Vehicles in Inventory;
+     * @return returns count of Vehicles in Inventory as String;
+     */
     public String inventoryCount()
     {
         return Integer.toString(vehicles.size()); 
     }
     
+    /**
+     * Public method to get a total of car Inventory;
+     * @return returns dolar value of all Vehicles int he inventory;
+     */
     public String inventoryValue()
     {
         double totalValueOfInventory = 0.0;
@@ -128,6 +167,9 @@ public class Inventory
         return Double.toString(totalValueOfInventory);
     }
     
+    /**
+     * Public method to display Vehicle's details in Inventory;
+     */
     public void displayInventory()
     {
         for(Vehicle v : vehicles)
