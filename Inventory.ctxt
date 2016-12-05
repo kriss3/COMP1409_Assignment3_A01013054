@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.util.ArrayList\ getVehicles()
+comment0.text=\r\n\ Public\ getter\ method\ to\ get\ the\ value\ of\ vehicles;\r\n\ @return\ returns\ a\ colloection\ of\ Vehicles\ as\ ArrayList;\r\n
+comment1.params=value
+comment1.target=void\ setVehicles(java.util.ArrayList)
+comment1.text=\r\n\ Public\ setter\ method\ to\ set\ the\ value\ of\ Vehicles;\r\n\ @param\ takes\ value\ parameter\ as\ ArrayList;\r\n
+comment10.params=
+comment10.target=void\ displayInventory()
+comment2.params=vehicle
+comment2.target=void\ addVehicle(Vehicle)
+comment3.params=model
+comment3.target=void\ searchByModel(java.lang.String)
+comment4.params=year
+comment4.target=void\ searchByYear(int)
+comment5.params=minPrice\ maxPrice
+comment5.target=void\ searchByPrice(double,\ double)
+comment6.params=results
+comment6.target=void\ displaySearchResults(java.util.ArrayList)
+comment7.params=stockCode
+comment7.target=void\ removeVehicle(java.lang.String)
+comment8.params=
+comment8.target=java.lang.String\ inventoryCount()
+comment9.params=
+comment9.target=java.lang.String\ inventoryValue()
+numComments=11
