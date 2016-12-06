@@ -1,159 +1,168 @@
+
 /**
- * Information for customers renting a musical instrument.
- *
- * @author Bullwinkle Moose
- * @version (a version number or a date)
+ * Customer class to model a customer;
+ * 
+ * @author Krzysztof Szczuorowski 
+ * @version 1.1
+ * @since 11/16/2016
+ * @see https://learn.bcit.ca/d2l/le/content/331960/viewContent/2111241/View
  */
 public class Customer
 {
     private String firstName;
     private String lastName;
-    private String driversLicense;
+    private String drivingLicense;
     private String address;
     private String phoneNumber;
-
+    
     /**
-     * defualt constructor for Customer class
+     * Default Customer constructor; <br>
+     * Takes no parameters;<br>
      */
     public Customer()
     {
-
+        this.firstName = "Joe";
+        this.lastName = "Blogs";
+        this.drivingLicense = "000001";
+        this.address = "61 Java Street";
+        this.phoneNumber = "555-55-055";
     }
-
+    
     /**
-     * @param firstName      to set the firstName field
-     * @param lastName       to set the lastName field
-     * @param driversLicense to set the driversLicense field
-     * @param address        to set the address field
-     * @param phoneNumber    to set the phoneNumber field
+     * Custom constructor for Customer class;<br>
+     * @param First Name as String;
+     * @param Last Name as String;
+     * @param Driving License as String; 
+     * @param Address as String;
+     * @param Phone Number as String;
      */
-    public Customer(String firstName, String lastName, String driversLicense, String address, String phoneNumber)
+    public Customer(String firstName, String lastName, String drivingLicense, 
+                    String address, String phoneNumber)
     {
         setFirstName(firstName);
         setLastName(lastName);
-        setDriversLicense(driversLicense);
+        setDrivingLicense(drivingLicense);
         setAddress(address);
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
     }
-
+    
     /**
-     * @return the firstName
+     * Public method to return First Name;<br>
+     * @return returns First Name as String;
      */
     public String getFirstName()
     {
-        return firstName;
+        return this.firstName;
     }
-
+    
     /**
-     * @param firstName the firstName to set
+     * Public method to set value of First Name;
+     * @param value of First Name as String;
      */
-    public void setFirstName(String name)
-    {
-        if(name != null && name.length() > 0)
+    public void setFirstName(String value)
+    {   
+        if(value != null && value.length() > 0)
         {
-            String fName = name.toLowerCase();
-            firstName = fName.replace(fName.charAt(0), Character.toUpperCase(fName.charAt(0)));
-        } else
-        {
-
-            System.out.println("ERROR: invalid first name");
+           this.firstName = beautifyName(value);
         }
     }
-
+    
     /**
-     * @return the lastName
+     * Public method to return value of Last Name;
+     * @return returns Last Name as String;
      */
     public String getLastName()
     {
-        return lastName;
+        return this.lastName;
     }
-
+    
     /**
-     * @param lastName the lastName to set
+     * Public method to set value of Last Name;
+     * @param value of Last Name as String;
      */
-    public void setLastName(String name)
+    public void setLastName(String value)
     {
-        if(name != null && name.length() > 0)
+        if(value != null && value.length() > 0)
         {
-            String lName = name.toLowerCase();
-            lastName = lName.replace(lName.charAt(0), Character.toUpperCase(lName.charAt(0)));
-        }
-        else
-        {
-
-            System.out.println("ERROR: invalid last name");
+           this.lastName = beautifyName(value); 
         }
     }
-
+    
     /**
-     * @return the driversLicense
-     */
-    public String getDriversLicense()
-    {
-        return driversLicense;
-    }
-
-    /**
-     * @param driversLicense the driversLicense to set
-     */
-    public void setDriversLicense(String driversLicense)
-    {
-        if(driversLicense != null && driversLicense.length() > 0)
-        {
-            this.driversLicense = driversLicense;
-        }
-        else
-        {
-
-            System.out.println("ERROR: invalid drivers license");
-        }
-    }
-
-    /**
-     * @return the address
+     * Public method to get value of address;
+     * @return returns value of Address as String;
      */
     public String getAddress()
     {
-        return address;
+        return this.address;
     }
-
+    
     /**
-     * @param address the address to set
+     * Public method to set value of Address;
+     * @param sets value of Address as String;
      */
-    public void setAddress(String address)
+    public void setAddress(String value)
     {
-        if(address != null && address.length() > 0)
+        if(value != null && value.length() > 0)
         {
-            this.address = address;
-        }
-        else
-        {
-
-            System.out.println("ERROR: invalid address");
+           this.address = value;
         }
     }
-
+    
     /**
-     * @return the phoneNumber
+     * Public method to return value of Driving License;
+     * @return returns value of Driving License as String;
+     */
+    public String getDrivingLicense()
+    {
+        return this.drivingLicense;
+    }
+    
+    /**
+     * Public method to set value of Driving License;
+     * @param value of phone number as String;
+     */
+    public void setDrivingLicense(String value)
+    {
+        if(value != null && value.length() > 0)
+        {
+           this.drivingLicense = value;
+        }
+    }
+    
+    /**
+     * Public method to get value of Phone Number;
+     * @return return value of Phone Number as String;
      */
     public String getPhoneNumber()
     {
-        return phoneNumber;
+        return this.phoneNumber;
     }
-
+    
     /**
-     * @param phoneNumber the phoneNumber to set
+     * Public method to set value of Phone Number;
+     * @param value of phone number as String;
      */
-    public void setPhoneNumber(String phoneNumber)
+    public void setPhoneNumber(String value)
     {
-        this.phoneNumber = phoneNumber;
+        if(value != null && value.length() > 0)
+        {
+            this.phoneNumber = value;
+        }
     }
-
+    
     /**
-     * @return the RentalCustomer first and last names.
+     * Public method to print out First Name and Last Name; <br>
+     * @return returns first name and last name as String;
      */
-    public String getFullName()
+    public String fullNameTag()
     {
         return firstName + " " + lastName;
+    }
+    
+    //private methods
+    private String beautifyName(String name)
+    {
+        return name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase(); 
     }
 }

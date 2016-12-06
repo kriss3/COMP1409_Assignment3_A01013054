@@ -154,7 +154,7 @@ public class Inventory
      */
     public String inventoryCount()
     {
-        return Integer.toString(vehicles.size()); 
+        return "Number of items in Inventory: " + vehicles.size();
     }
     
     /**
@@ -169,7 +169,7 @@ public class Inventory
             totalValueOfInventory += v.getSellingPrice();
         }
         
-        return Double.toString(totalValueOfInventory);
+        return String.format("Total Inventory value: $%.2f", totalValueOfInventory);
     }
     
     /**
@@ -177,10 +177,17 @@ public class Inventory
      */
     public void displayInventory()
     {
-        for(Vehicle v : vehicles)
+        if(vehicles != null && vehicles.size() > 0)
         {
-            System.out.println("####---------------------------####");
-            v.printDetails();
+            for(Vehicle v : vehicles)
+            {
+                System.out.println("####---------------------------####");
+                v.printDetails();
+            }
+        }
+        else
+        {
+            System.out.println("No items in inventory !!!");
         }
     }
 }

@@ -89,7 +89,7 @@ public class VehiclePurchase
      */
     public void displayPurchaseInformation()
     {
-        System.out.println("Customer: " + customer.getFullName());
+        System.out.println("Customer: " + customer.fullNameTag());
         System.out.println("Purchase Date: " + purchaseDate.getFullDate());
         System.out.print("Vehicle Description: ");
         vehiclePurchased.printDetails();
@@ -104,7 +104,7 @@ public class VehiclePurchase
     
     private void removeVehicleFromInventory(String vehicleToRemove)
     {
-        System.out.println("Purchase final, removing vehicle: " + vehicleToRemove 
+        System.out.println("Purchase final,\nRemoving vehicle: " + vehicleToRemove 
                            + " from Shop's Inventory !");
                            
         Inventory.removeVehicle(vehicleToRemove);
