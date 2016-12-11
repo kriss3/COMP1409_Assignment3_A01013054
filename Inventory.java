@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Inventory class to model car shop inventory. Objects of this class are to manage 
  * vehicles currently in the inventory.
@@ -44,9 +45,13 @@ public class Inventory
      */
     public void addVehicle(Vehicle vehicle)
     {
-        if(vehicle != null)
+        if(vehicle != null && !doesStockCodeExist(vehicle.getStockCode()))
         {
             vehicles.add(vehicle);
+        }
+        else
+        {
+            System.out.println("ERROR: Vehicle null or stockCode: " + vehicle.getStockCode() + " already exists in Inventory !");
         }
     }
     
@@ -134,10 +139,10 @@ public class Inventory
      * @param takes stockCode parameter as String;
      */
     public static void removeVehicle(String stockCode)
-    {
+    {   
         if(!stockCode.equals(""))
         {
-            Iterator<Vehicle> itr = vehicles.listIterator();
+            Iterator<Vehicle> itr = vehicles.iterator();
             while(itr.hasNext())
             {
                 if(itr.next().getStockCode().equals(stockCode))
@@ -189,5 +194,19 @@ public class Inventory
         {
             System.out.println("No items in inventory !!!");
         }
+    }
+    
+    private boolean doesStockCodeExist(String stockCode)
+    {
+        boolean doesExist = false;
+        
+        for(Vehicle v : vehicles)
+        {
+            if(v.getStockCode().equals(stockCode))
+            {
+                return true;
+            }
+        }
+        return doesExist;
     }
 }
